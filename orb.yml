@@ -11,7 +11,7 @@ examples:
       version: 2.1
 
       orbs:
-        tfupdate: masutaka/tfupdate@dev:first
+        tfupdate: masutaka/tfupdate@0.0.1
 
       tfupdate:
         executor: tfupdate/default
