@@ -1,12 +1,14 @@
 version: 2.1
 
 description: |
-  Update version constraints in your Terraform configurations and
-  send pull request. Uses https://github.com/minamijoyo/tfupdate
+  CircleCI orb for tfupdate.
+  https://github.com/masutaka/circleci-tfupdate-orb
 
 examples:
-  use_tfupdate_job:
-    description: Run tfupdate and create pull request if needed.
+  tfupdate_and_create_pull_request:
+    description: |
+      Run tfupdate and create pull request if needed.
+      Uses https://github.com/minamijoyo/tfupdate
     usage:
       version: 2.1
 
