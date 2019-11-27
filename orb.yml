@@ -1,7 +1,8 @@
 version: 2.1
 
 description: |
-  Run tfupdate ( https://github.com/minamijoyo/tfupdate )
+  Update version constraints in your Terraform configurations and
+  send pull request. Uses https://github.com/minamijoyo/tfupdate
 
 executors:
   default:
