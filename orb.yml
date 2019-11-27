@@ -4,6 +4,47 @@ description: |
   Update version constraints in your Terraform configurations and
   send pull request. Uses https://github.com/minamijoyo/tfupdate
 
+examples:
+  use_tfupdate_job:
+    description: Run tfupdate and create pull request if needed.
+    usage:
+      version: 2.1
+
+      orbs:
+        tfupdate: masutaka/tfupdate@dev:first
+
+      tfupdate:
+        executor: tfupdate/default
+        working_directory: /work
+        steps:
+          - checkout
+          - tfupdate/setup:
+              git_user_name: 'Your Name'
+              git_user_email: 'you@example.com'
+          - tfupdate/terraform
+          - tfupdate/provider:
+              provider_name: 'aws'
+
+      workflows:
+        version: 2
+        scheduled:
+          jobs:
+            - tfupdate
+          triggers:
+            - schedule:
+                cron: "0 0 * * *"  # minute hour day month week (UTC)
+                filters:
+                  branches:
+                    only:
+                      - master
+        tfupdate_test:
+          jobs:
+            - tfupdate:
+                filters:
+                  branches:
+                    only:
+                      - /tfupdate-.*/
+
 executors:
   default:
     parameters:
