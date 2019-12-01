@@ -13,7 +13,13 @@ examples:
       version: 2.1
 
       orbs:
-        tfupdate: masutaka/tfupdate@volatile
+        # Use specific version
+        # see. https://github.com/masutaka/circleci-tfupdate-orb/releases
+        tfupdate: masutaka/tfupdate@0.0.2
+
+        # or
+        # Use latest version
+        # tfupdate: masutaka/tfupdate@volatile
 
       tfupdate:
         executor: tfupdate/default
