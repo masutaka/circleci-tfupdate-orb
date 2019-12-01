@@ -1,0 +1,65 @@
+version: 2.1
+
+orbs:
+  orb-tools: circleci/orb-tools@8.27.5
+
+workflows:
+  lint_pack-validate_publish-dev:
+    jobs:
+      - orb-tools/lint
+      - orb-tools/pack:
+          requires:
+            - orb-tools/lint
+      - orb-tools/publish-dev:
+          orb-name: masutaka/tfupdate
+          requires:
+            - orb-tools/pack
+      - orb-tools/trigger-integration-workflow:
+          # Don't cleanup git tags `integration-*` until the release flow is mature
+          cleanup-tags: false # default
+          name: trigger-integration-dev
+          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1 # user key on https://circleci.com/gh/masutaka/circleci-tfupdate-orb/edit#checkout
+          requires:
+            - orb-tools/publish-dev
+          filters:
+            branches:
+              ignore: master
+      - orb-tools/trigger-integration-workflow:
+          name: trigger-integration-master
+          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1 # user key on https://circleci.com/gh/masutaka/circleci-tfupdate-orb/edit#checkout
+          tag: master
+          requires:
+            - orb-tools/publish-dev
+          filters:
+            branches:
+              only: master
+  prod-release:
+    jobs:
+      - orb-tools/dev-promote-prod:
+          name: dev-promote-patch
+          orb-name: masutaka/tfupdate
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /master-patch.*/
+
+      - orb-tools/dev-promote-prod:
+          name: dev-promote-minor
+          release: minor
+          orb-name: masutaka/tfupdate
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /master-minor.*/
+
+      - orb-tools/dev-promote-prod:
+          name: dev-promote-major
+          release: major
+          orb-name: masutaka/tfupdate
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /master-major.*/

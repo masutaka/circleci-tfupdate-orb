@@ -1,0 +1,47 @@
+description: |
+  Run tfupdate and create pull request if needed.
+  Uses https://github.com/minamijoyo/tfupdate
+
+usage:
+  version: 2.1
+
+  orbs:
+    # Use specific version
+    # see. https://github.com/masutaka/circleci-tfupdate-orb/releases
+    tfupdate: masutaka/tfupdate@0.0.2
+
+    # or
+    # Use latest version
+    # tfupdate: masutaka/tfupdate@volatile
+
+  tfupdate:
+    executor: tfupdate/default
+    working_directory: /work
+    steps:
+      - checkout
+      - tfupdate/setup:
+          git_user_name: 'Your Name'
+          git_user_email: 'you@example.com'
+      - tfupdate/terraform
+      - tfupdate/provider:
+          provider_name: 'aws'
+
+  workflows:
+    version: 2
+    scheduled:
+      jobs:
+        - tfupdate
+      triggers:
+        - schedule:
+            cron: "0 0 * * *"  # minute hour day month week (UTC)
+            filters:
+              branches:
+                only:
+                  - master
+    tfupdate_test:
+      jobs:
+        - tfupdate:
+            filters:
+              branches:
+                only:
+                  - /tfupdate-.*/

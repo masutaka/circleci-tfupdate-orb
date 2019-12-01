@@ -1,0 +1,30 @@
+description: Setup tfupdate
+
+parameters:
+  git_user_name:
+    description: git user name
+    type: string
+  git_user_email:
+    description: git user email
+    type: string
+  github_token:
+    description: environment variable name for GitHub access token
+    type: env_var_name
+    default: GITHUB_TOKEN
+
+steps:
+  - run:
+      name: Show tfupdate version
+      command: tfupdate --version
+  - run:
+      name: Show hub version
+      command: hub --version
+  - run:
+      name: Setup git config
+      command: |
+        git config --local user.name << parameters.git_user_name >>
+        git config --local user.email << parameters.git_user_email >>
+        mkdir -p $HOME/.config
+        echo "https://${<< parameters.github_token >>}:@github.com" > $HOME/.config/git-credential
+        git config --local credential.helper "store --file=$HOME/.config/git-credential"
+        git config --local url."https://github.com/".insteadOf 'git@github.com:'
