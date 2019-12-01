@@ -7,3 +7,11 @@ workflows:
   lint_pack-validate_publish-dev:
     jobs:
       - orb-tools/lint
+      - orb-tools/publish-dev:
+          attach-workspace: false
+          checkout: true
+          orb-name: masutaka/tfupdate
+          orb-path: orb.yml
+          validate: true
+          requires:
+            - orb-tools/lint
