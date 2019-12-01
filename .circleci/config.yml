@@ -33,3 +33,33 @@ workflows:
           filters:
             branches:
               only: master
+  prod-release:
+    jobs:
+      - orb-tools/dev-promote-prod:
+          name: dev-promote-patch
+          orb-name: masutaka/tfupdate
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /master-patch.*/
+
+      - orb-tools/dev-promote-prod:
+          name: dev-promote-minor
+          release: minor
+          orb-name: masutaka/tfupdate
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /master-minor.*/
+
+      - orb-tools/dev-promote-prod:
+          name: dev-promote-major
+          release: major
+          orb-name: masutaka/tfupdate
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /master-major.*/
