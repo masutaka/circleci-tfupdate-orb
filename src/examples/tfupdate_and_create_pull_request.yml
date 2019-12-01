@@ -8,7 +8,7 @@ usage:
   orbs:
     # Use specific version
     # see. https://github.com/masutaka/circleci-tfupdate-orb/releases
-    tfupdate: masutaka/tfupdate@0.0.2
+    tfupdate: masutaka/tfupdate@x.y.z
 
     # or
     # Use latest version
