@@ -7,15 +7,13 @@ workflows:
   lint_pack-validate_publish-dev:
     jobs:
       - orb-tools/lint
-      - orb-tools/publish-dev:
-          attach-workspace: false
-          checkout: true
-          orb-name: masutaka/tfupdate
-          orb-path: orb.yml
-          store-artifact: false
-          validate: true
+      - orb-tools/pack:
           requires:
             - orb-tools/lint
+      - orb-tools/publish-dev:
+          orb-name: masutaka/tfupdate
+          requires:
+            - orb-tools/pack
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-dev
           ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1 # user key on https://circleci.com/gh/masutaka/circleci-tfupdate-orb/edit#checkout
