@@ -16,3 +16,11 @@ workflows:
           validate: true
           requires:
             - orb-tools/lint
+      - orb-tools/trigger-integration-workflow:
+          name: trigger-integration-dev
+          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1
+          requires:
+            - orb-tools/publish-dev
+          filters:
+            branches:
+              ignore: master
