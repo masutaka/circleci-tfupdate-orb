@@ -18,7 +18,7 @@ workflows:
             - orb-tools/lint
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-dev
-          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1
+          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1 # user key on https://circleci.com/gh/masutaka/circleci-tfupdate-orb/edit#checkout
           requires:
             - orb-tools/publish-dev
           filters:
@@ -26,7 +26,7 @@ workflows:
               ignore: master
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-master
-          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1
+          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1 # user key on https://circleci.com/gh/masutaka/circleci-tfupdate-orb/edit#checkout
           tag: master
           requires:
             - orb-tools/publish-dev
