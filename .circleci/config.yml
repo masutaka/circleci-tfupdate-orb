@@ -12,6 +12,7 @@ workflows:
           checkout: true
           orb-name: masutaka/tfupdate
           orb-path: orb.yml
+          store-artifact: false
           validate: true
           requires:
             - orb-tools/lint
