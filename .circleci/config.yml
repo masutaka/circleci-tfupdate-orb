@@ -15,6 +15,8 @@ workflows:
           requires:
             - orb-tools/pack
       - orb-tools/trigger-integration-workflow:
+          # Don't cleanup git tags `integration-*` until the release flow is mature
+          cleanup-tags: false # default
           name: trigger-integration-dev
           ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1 # user key on https://circleci.com/gh/masutaka/circleci-tfupdate-orb/edit#checkout
           requires:
