@@ -78,10 +78,10 @@ commands:
         default: GITHUB_TOKEN
     steps:
       - run:
-          name: Show tfupdate version 
+          name: Show tfupdate version
           command: tfupdate --version
       - run:
-          name: Show hub version 
+          name: Show hub version
           command: hub --version
       - run:
           name: Setup git config
