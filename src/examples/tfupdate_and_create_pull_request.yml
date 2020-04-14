@@ -22,9 +22,11 @@ usage:
       - tfupdate/setup:
           git_user_name: 'Your Name'
           git_user_email: 'you@example.com'
-      - tfupdate/terraform
+      - tfupdate/terraform:
+          assignees: 'alice'
       - tfupdate/provider:
           provider_name: 'aws'
+          assignees: 'alice,bob'
 
   workflows:
     version: 2

@@ -12,6 +12,9 @@ parameters:
   provider_name:
     description: A name of provider
     type: string
+  assignees:
+    description: A comma-separated list (no spaces around the comma) of GitHub handles to assign to this pull request
+    type: string
 
 steps:
   - run:
@@ -31,6 +34,10 @@ steps:
           else
             git commit -m "$UPDATE_MESSAGE"
             PULL_REQUEST_BODY="For details see: https://github.com/terraform-providers/terraform-provider-<< parameters.provider_name >>/releases"
-            git push origin HEAD && hub pull-request -m "$UPDATE_MESSAGE" -m "$PULL_REQUEST_BODY" -b << parameters.base_branch >>
+            if [ -n "<< parameters.assignees >>" ]; then
+              git push origin HEAD && hub pull-request -m "$UPDATE_MESSAGE" -m "$PULL_REQUEST_BODY" -b << parameters.base_branch >> -a "<< parameters.assignees >>"
+            else
+              git push origin HEAD && hub pull-request -m "$UPDATE_MESSAGE" -m "$PULL_REQUEST_BODY" -b << parameters.base_branch >>
+            fi
           fi
         fi
