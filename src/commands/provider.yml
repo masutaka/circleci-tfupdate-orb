@@ -15,6 +15,7 @@ parameters:
   assignees:
     description: A comma-separated list (no spaces around the comma) of GitHub handles to assign to this pull request
     type: string
+    default: ''
 
 steps:
   - run:
