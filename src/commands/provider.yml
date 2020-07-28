@@ -18,7 +18,7 @@ parameters:
     default: ''
 
 steps:
-  - run:
+  - deploy:
       name: Update terraform-provider-<< parameters.provider_name >> to latest
       command: |
         VERSION=$(tfupdate release latest terraform-providers/terraform-provider-<< parameters.provider_name >>)

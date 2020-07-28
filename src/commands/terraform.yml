@@ -15,7 +15,7 @@ parameters:
     default: ''
 
 steps:
-  - run:
+  - deploy:
       name: Update terraform to latest
       command: |
         VERSION=$(tfupdate release latest hashicorp/terraform)
