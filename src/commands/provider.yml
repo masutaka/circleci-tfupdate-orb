@@ -5,6 +5,10 @@ parameters:
     description: Arguments for tfupdate command
     type: string
     default: '-r ./'
+  assignees:
+    description: A comma-separated list (no spaces around the comma) of GitHub handles to assign to this pull request
+    type: string
+    default: ''
   base_branch:
     description: A base branch name to update
     type: string
@@ -14,10 +18,6 @@ parameters:
     type: string
   repo_name:
     description: A name of GitHub repository
-    type: string
-    default: ''
-  assignees:
-    description: A comma-separated list (no spaces around the comma) of GitHub handles to assign to this pull request
     type: string
     default: ''
 
