@@ -30,4 +30,4 @@ steps:
         git config --local url."https://github.com/".insteadOf 'git@github.com:'
   - run:
       name: Setup hub CLI
-      command: echo "export << parameters.github_token >>=${<< parameters.github_token >>}" >> $BASH_ENV
+      command: echo "export GITHUB_TOKEN=${<< parameters.github_token >>}" >> $BASH_ENV
