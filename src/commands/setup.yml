@@ -28,3 +28,6 @@ steps:
         echo "https://${<< parameters.github_token >>}:@github.com" > $HOME/.config/git-credential
         git config --local credential.helper "store --file=$HOME/.config/git-credential"
         git config --local url."https://github.com/".insteadOf 'git@github.com:'
+  - run:
+      name: Setup hub CLI
+      command: echo "export << parameters.github_token >>=${<< parameters.github_token >>}" >> $BASH_ENV
