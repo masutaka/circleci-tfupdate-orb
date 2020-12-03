@@ -12,6 +12,10 @@ parameters:
   provider_name:
     description: A name of provider
     type: string
+  repo_name:
+    description: A name of GitHub repository
+    type: string
+    default: ''
   assignees:
     description: A comma-separated list (no spaces around the comma) of GitHub handles to assign to this pull request
     type: string
@@ -21,7 +25,11 @@ steps:
   - deploy:
       name: Update terraform-provider-<< parameters.provider_name >> to latest
       command: |
-        VERSION=$(tfupdate release latest terraform-providers/terraform-provider-<< parameters.provider_name >>)
+        if [ "<< parameters.repo_name >>" ]; then
+          VERSION=$(tfupdate release latest << parameters.repo_name >>)
+        else
+          VERSION=$(tfupdate release latest terraform-providers/terraform-provider-<< parameters.provider_name >>)
+        fi
         UPDATE_MESSAGE="[tfupdate] Update terraform-provider-<< parameters.provider_name >> to v${VERSION}"
         if hub pr list -s "open" -f "%t: %U%n" | grep -F "$UPDATE_MESSAGE"; then
           echo "A pull request already exists"
@@ -34,7 +42,11 @@ steps:
             echo "No changes"
           else
             git commit -m "$UPDATE_MESSAGE"
-            PULL_REQUEST_BODY="For details see: https://github.com/terraform-providers/terraform-provider-<< parameters.provider_name >>/releases"
+            if [ "<< parameters.repo_name >>" ]; then
+              PULL_REQUEST_BODY="For details see: https://github.com/<< parameters.repo_name >>/releases"
+            else
+              PULL_REQUEST_BODY="For details see: https://github.com/terraform-providers/terraform-provider-<< parameters.provider_name >>/releases"
+            fi
             if [ -n "<< parameters.assignees >>" ]; then
               git push origin HEAD && hub pull-request -m "$UPDATE_MESSAGE" -m "$PULL_REQUEST_BODY" -b << parameters.base_branch >> -a "<< parameters.assignees >>"
             else
