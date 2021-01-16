@@ -13,12 +13,12 @@ workflows:
           requires:
             - orb-tools/lint
             - orb-tools/pack
-      # If the commit message contains the below, the orb will be publish.
-      # - [semver:major]
-      # - [semver:minor]
-      # - [semver:patch]
-      # If the commit message contains the below or not, the orb will not be publish.
-      # - [semver:skip]
+      # If the commit message contains the below, it will publish the new version and git-push new tag.
+      #  [semver:major]
+      #  [semver:minor]
+      #  [semver:patch]
+      # If the commit message contains the below or not, it will not publish the new version and not git-push new tag.
+      #  [semver:skip]
       - orb-tools/dev-promote-prod-from-commit-subject:
           name: dev-promote-semver
           add-pr-comment: false
