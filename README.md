@@ -10,5 +10,4 @@
 
 CircleCI orb for [tfupdate](https://github.com/minamijoyo/tfupdate).
 
-CircleCI Developer Hub - masutaka/tfupdate:
-https://circleci.com/orbs/registry/orb/masutaka/tfupdate
+See https://circleci.com/orbs/registry/orb/masutaka/tfupdate
