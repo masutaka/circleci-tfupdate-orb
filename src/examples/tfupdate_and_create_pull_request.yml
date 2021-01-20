@@ -6,12 +6,17 @@ usage:
   version: 2.1
 
   orbs:
-    # Use specific version
+    # Set major version to `x`
     # see. https://github.com/masutaka/circleci-tfupdate-orb/releases
-    tfupdate: masutaka/tfupdate@x.y.z
+    tfupdate: masutaka/tfupdate@x
 
     # or
-    # Use latest version
+    # Set specific version to `x.y.z`
+    # see. https://github.com/masutaka/circleci-tfupdate-orb/releases
+    # tfupdate: masutaka/tfupdate@x.y.z
+
+    # or
+    # Use edge version
     # tfupdate: masutaka/tfupdate@volatile
 
   tfupdate:
