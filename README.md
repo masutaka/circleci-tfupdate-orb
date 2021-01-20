@@ -8,6 +8,6 @@
 [tfupdate orb]: https://circleci.com/developer/orbs/orb/masutaka/tfupdate
 [license]: https://github.com/masutaka/circleci-tfupdate-orb/blob/master/LICENSE.txt
 
-CircleCI orb for [tfupdate](https://github.com/minamijoyo/tfupdate).
+CircleCI Orb for continuous updating terraform with [tfupdate](https://github.com/minamijoyo/tfupdate)
 
 See https://circleci.com/orbs/registry/orb/masutaka/tfupdate
