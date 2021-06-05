@@ -43,9 +43,9 @@ steps:
           else
             git commit -m "$UPDATE_MESSAGE"
             if [ "<< parameters.repo_name >>" ]; then
-              PULL_REQUEST_BODY="For details see: https://github.com/<< parameters.repo_name >>/releases"
+              PULL_REQUEST_BODY="For details see: https://github.com/<< parameters.repo_name >>/releases\nPlease execute \`\$ terraform init -upgrade\` and commit.:pray:"
             else
-              PULL_REQUEST_BODY="For details see: https://github.com/hashicorp/terraform-provider-<< parameters.provider_name >>/releases"
+              PULL_REQUEST_BODY="For details see: https://github.com/hashicorp/terraform-provider-<< parameters.provider_name >>/releases\nPlease execute \`\$ terraform init -upgrade\` and commit.:pray:"
             fi
             if [ -n "<< parameters.assignees >>" ]; then
               git push origin HEAD && hub pull-request -m "$UPDATE_MESSAGE" -m "$PULL_REQUEST_BODY" -b << parameters.base_branch >> -a "<< parameters.assignees >>"
