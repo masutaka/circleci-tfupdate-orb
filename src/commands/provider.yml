@@ -47,7 +47,10 @@ steps:
             else
               RELEASE_URL="https://github.com/hashicorp/terraform-provider-<< parameters.provider_name >>/releases"
             fi
-            PULL_REQUEST_BODY="For details see: $RELEASE_URL<br>Please execute \`\$ terraform init -upgrade\` and commit.:pray:<br><br>:bulb: For provider updates, recommend using [GitHub-native Dependabot](https://docs.github.com/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically). It will be able to update the \`.terraform.lock.hcl\`."
+            DEPENDABOT_LINK='[GitHub-native Dependabot](https://docs.github.com/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically)'
+            PULL_REQUEST_BODY="For details see: $RELEASE_URL<br>"
+            PULL_REQUEST_BODY="${PULL_REQUEST_BODY}Please execute \`\$ terraform init -upgrade\` and commit.:pray:<br><br>"
+            PULL_REQUEST_BODY="${PULL_REQUEST_BODY}:bulb: For provider updates, recommend using ${DEPENDABOT_LINK}. It will be able to update the \`.terraform.lock.hcl\`."
             if [ -n "<< parameters.assignees >>" ]; then
               git push origin HEAD && hub pull-request -m "$UPDATE_MESSAGE" -m "$PULL_REQUEST_BODY" -b << parameters.base_branch >> -a "<< parameters.assignees >>"
             else
