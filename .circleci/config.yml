@@ -25,7 +25,7 @@ workflows:
           fail-if-semver-not-indicated: false
           orb-name: masutaka/tfupdate
           publish-version-tag: true
-          ssh-fingerprints: 9e:01:82:b2:99:b1:24:0b:0c:e7:c3:64:2f:0b:43:f1 # User Key on https://app.circleci.com/settings/project/github/masutaka/circleci-tfupdate-orb/ssh
+          ssh-fingerprints: 69:c2:08:b5:9c:88:2c:e7:12:e2:b7:33:bd:ac:a4:e6 # User Key on https://app.circleci.com/settings/project/github/masutaka/circleci-tfupdate-orb/ssh
           requires:
             - orb-tools/publish-dev
           filters:
