@@ -1,7 +1,7 @@
 # circleci-tfupdate-orb
 
 [![Build Status](https://img.shields.io/circleci/project/github/masutaka/circleci-tfupdate-orb/master.svg?logo=circieci&style=flat-square)][circleci]
-[![Tfupdate Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/masutaka/tfupdate)][tfupdate orb]
+[![Tfupdate Orb Version](https://badges.circleci.com/orbs/masutaka/tfupdate.svg)][tfupdate orb]
 [![License](https://img.shields.io/github/license/masutaka/circleci-tfupdate-orb.svg?style=flat-square)][license]
 
 [circleci]: https://circleci.com/gh/masutaka/circleci-tfupdate-orb
